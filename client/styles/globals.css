@@ -1,0 +1,106 @@
+:root {
+  --standard-font-size: 16px;
+  --header-height: 210px;
+  --categoryBox-radius: 10px;
+  --searchBar-width: 500px;
+  --inputField-width: 200px;
+  --inputField-height: 40px;
+  --inputField-borderRadius: 3px;
+
+  --background-color: #fcfcfc;
+
+  --primary-shade-1: #f1f8fe;
+  --primary-shade-2: #b2d3f2;
+  --primary-shade-3: #71a0d3;
+  --primary-shade-4: #4881c2;
+  --primary-shade-5: #37679d;
+  --primary-shade-6: #27486e;
+  --primary-shade-7: #273c52;
+
+  --neutral-shade-1: #f8f9fa;
+  --neutral-shade-2: #e2e7eb;
+  --neutral-shade-3: #d0d6dd;
+  --neutral-shade-4: #bac4cd;
+  --neutral-shade-5: #8a95a5;
+  --neutral-shade-6: #616b79;
+  --neutral-shade-7: #232933;
+
+  --accent-shade-green-1: #ebfefe;
+  --accent-shade-green-2: #b7ecea;
+  --accent-shade-green-3: #89d5d2;
+  --accent-shade-green-4: #5eaca3;
+  --accent-shade-green-5: #4a8f87;
+  --accent-shade-green-6: #32635e;
+  --accent-shade-green-7: #214444;
+
+  --accent-shade-yellow-1: #fffcf5;
+  --accent-shade-yellow-2: #fbf3da;
+  --accent-shade-yellow-3: #f6e3a7;
+  --accent-shade-yellow-4: #edcc74;
+  --accent-shade-yellow-5: #c4a650;
+  --accent-shade-yellow-6: #876e2f;
+  --accent-shade-yellow-7: #59491d;
+
+  --accent-shade-red-1: #f9e9e8;
+  --accent-shade-red-2: #eaadac;
+  --accent-shade-red-3: #d46c68;
+  --accent-shade-red-4: #ca4139;
+  --accent-shade-red-5: #a93029;
+  --accent-shade-red-6: #7e2521;
+  --accent-shade-red-7: #591e1b;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: var(--background-color);
+}
+
+main {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.icon-container-24 {
+  width: 24px;
+  height: 24px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.category-container {
+  box-sizing: border-box;
+  padding: 5px 15px;
+  color: var(--neutral-shade-7);
+  border-radius: var(--categoryBox-radius);
+}
+
+.meat-backgroundColor {
+  background-color: var(--accent-shade-red-3);
+}
+
+.vegetables-backgroundColor {
+  background-color: var(--accent-shade-green-3);
+}
+
+.fruits-backgroundColor {
+  background-color: var(--accent-shade-yellow-3);
+}
+
+.condiments-backgroundColor {
+  background-color: var(--primary-shade-3);
+}
+
+.products-backgroundColor {
+  background-color: var(--neutral-shade-3);
+}

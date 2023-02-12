@@ -1,0 +1,116 @@
+.createUpdateFormBlur {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(248, 249, 250, 0.2);
+  backdrop-filter: blur(2px);
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.createUpdateFormContainer {
+  background-color: var(--background-color);
+  width: fit-content;
+  height: fit-content;
+  box-sizing: border-box;
+  padding: 50px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 4px var(--neutral-shade-2);
+  border: 1px solid var(--neutral-shade-1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  row-gap: 50px;
+}
+
+.createUpdateFormButtonsContainer {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+}
+
+.createUpdateFormCancelButton {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  font-size: 16px;
+  color: var(--neutral-shade-4);
+  box-sizing: border-box;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+
+  transition: all ease-in-out 150ms;
+}
+
+.createUpdateFormCancelButton:hover {
+  background-color: var(--accent-shade-red-1);
+  border-radius: 5px;
+  color: var(--neutral-shade-5);
+}
+
+/* Form components */
+.fieldText {
+  font-size: 16px;
+  color: var(--neutral-shade-6);
+}
+
+.fieldContaier {
+  position: relative;
+  border: none;
+  background-color: transparent;
+}
+
+.fieldLabel {
+  position: absolute;
+  left: 20px;
+  top: 25%;
+  background-color: transparent;
+  transition: all ease-in-out 150ms;
+}
+
+.fieldInput {
+  height: var(--inputField-height);
+  width: var(--inputField-width);
+  background-color: var(--neutral-shade-2);
+  border: 2px solid transparent;
+  border-radius: var(--inputField-borderRadius);
+  box-sizing: border-box;
+  padding-left: 10px;
+
+  transition: background-color ease-in-out 150ms;
+}
+
+.fieldInput:focus {
+  background-color: transparent;
+  outline-color: var(--primary-shade-2);
+}
+
+.fieldInput:hover,
+.fieldLabel:hover {
+  cursor: text;
+}
+
+.fieldInput.fill {
+  background-color: transparent;
+  border: 1px solid var(--neutral-shade-2);
+}
+
+.fieldLabel.fill {
+  top: -18px;
+  left: 10px;
+
+  font-size: 0.8em;
+}
+
+.fieldText.fill {
+  background-color: transparent;
+}

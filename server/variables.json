@@ -1,0 +1,66 @@
+{
+  "units": [
+    {
+      "value": "kg",
+      "label": "kg"
+    },
+    {
+      "value": "lb",
+      "label": "lb"
+    },
+    {
+      "value": "g",
+      "label": "g"
+    },
+    {
+      "value": "ml",
+      "label": "ml"
+    },
+    {
+      "value": "L",
+      "label": "L"
+    },
+    {
+      "value": "100g",
+      "label": "100g"
+    },
+    {
+      "value": "other",
+      "label": "Autre"
+    }
+  ],
+  "stores": [
+    {
+      "value": "Adonis",
+      "label": "Adonis"
+    },
+    {
+      "value": "Maxi",
+      "label": "Maxi"
+    },
+    {
+      "value": "Walmart",
+      "label": "Walmart"
+    },
+    {
+      "value": "Super C",
+      "label": "Super C"
+    },
+    {
+      "value": "Provigo",
+      "label": "Provigo"
+    },
+    {
+      "value": "Metro",
+      "label": "Metro"
+    },
+    {
+      "value": "IGA",
+      "label": "IGA"
+    },
+    {
+      "value": "Autre",
+      "label": "Autre"
+    }
+  ]
+}

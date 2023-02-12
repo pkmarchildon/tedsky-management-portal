@@ -1,0 +1,36 @@
+:root {
+  --row-height: 60px;
+}
+
+.itemsTable-mainContainer {
+  width: 100%;
+  height: fit-content;
+  color: var(--neutral-shade-7);
+  border-spacing: 0px;
+  margin-top: 25px;
+}
+
+.itemsTable-headerContainer {
+  width: 100%;
+  height: fit-content;
+}
+
+.itemsTable-gridRowLayout {
+  width: 100%;
+  height: var(--row-height);
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  align-items: center;
+  justify-items: center;
+  column-gap: 10px;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.itemsTable-header {
+  background-color: var(--primary-shade-2);
+}
+
+td {
+  text-align: center;
+}

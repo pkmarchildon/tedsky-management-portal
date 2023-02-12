@@ -1,0 +1,17 @@
+.actionButton {
+  background-color: var(--accent-shade-green-3);
+  border: none;
+  border-radius: 5px;
+  color: var(--neutral-shade-7);
+  font-size: 16px;
+  padding: 5px 8px;
+  cursor: pointer;
+}
+
+.actionButton:hover {
+  background-color: var(--accent-shade-green-2);
+}
+
+.actionButton:active {
+  background-color: var(--accent-shade-green-4);
+}
