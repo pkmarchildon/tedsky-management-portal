@@ -1,94 +1,98 @@
-import meatsDB from './meats.schema.js';
-import condimentsDB from './condiments.schema.js';
-import fruitsDB from './fruits.schema.js';
-import productsDB from './products.schema.js';
-import vegetablesDB from './vegetables.schema.js';
+import mongoose from 'mongoose';
+
+import { categorySchema } from './category.schema.js';
+
+const meatModel = mongoose.model('meats', categorySchema);
+const condimentsModel = mongoose.model('condiments', categorySchema);
+const fruitsModel = mongoose.model('fruits', categorySchema);
+const productsModel = mongoose.model('products', categorySchema);
+const vegetablesModel = mongoose.model('vegetables', categorySchema);
 
 export async function getItems(category) {
-  if (category === 'meat') {
-    return await _getItem(meatsDB);
-  }
+  switch (category) {
+    case 'meat':
+      return await _getItem(meatModel);
 
-  if (category === 'condiments') {
-    return await _getItem(condimentsDB);
-  }
+    case 'condiments':
+      return await _getItem(condimentsModel);
 
-  if (category === 'fruits') {
-    return await _getItem(fruitsDB);
-  }
+    case 'fruits':
+      return await _getItem(fruitsModel);
 
-  if (category === 'products') {
-    return await _getItem(productsDB);
-  }
+    case 'products':
+      return await _getItem(productsModel);
 
-  if (category === 'vegetables') {
-    return await _getItem(vegetablesDB);
+    case 'vegetables':
+      return await _getItem(vegetablesModel);
+
+    default:
+      throw new Error('Unknown category: ' + category);
   }
 }
 
 export async function createItem(category, newItem) {
-  if (category === 'meat') {
-    return await _createItem(meatsDB, newItem);
-  }
+  switch (category) {
+    case 'meat':
+      return await _createItem(meatModel, newItem);
 
-  if (category === 'condiments') {
-    return await _createItem(condimentsDB, newItem);
-  }
+    case 'condiments':
+      return await _createItem(condimentsModel, newItem);
 
-  if (category === 'fruits') {
-    return await _createItem(fruitsDB, newItem);
-  }
+    case 'fruits':
+      return await _createItem(fruitsModel, newItem);
 
-  if (category === 'products') {
-    return await _createItem(productsDB, newItem);
-  }
+    case 'products':
+      return await _createItem(productsModel, newItem);
 
-  if (category === 'vegetables') {
-    return await _createItem(vegetablesDB, newItem);
+    case 'vegetables':
+      return await _createItem(vegetablesModel, newItem);
+
+    default:
+      throw new Error('Unknown category: ' + category);
   }
 }
 
 export async function uptadeItem(category, updatedItem) {
-  if (category === 'meat') {
-    return await _updateItem(meatsDB, updatedItem);
-  }
+  switch (category) {
+    case 'meat':
+      return await _updateItem(meatModel, updatedItem);
 
-  if (category === 'condiments') {
-    return await _updateItem(condimentsDB, updatedItem);
-  }
+    case 'condiments':
+      return await _updateItem(condimentsModel, updatedItem);
 
-  if (category === 'fruits') {
-    return await _updateItem(fruitsDB, updatedItem);
-  }
+    case 'fruits':
+      return await _updateItem(fruitsModel, updatedItem);
 
-  if (category === 'products') {
-    return await _updateItem(productsDB, updatedItem);
-  }
+    case 'products':
+      return await _updateItem(productsModel, updatedItem);
 
-  if (category === 'vegetables') {
-    return await _updateItem(vegetablesDB, updatedItem);
+    case 'vegetables':
+      return await _updateItem(vegetablesModel, updatedItem);
+
+    default:
+      throw new Error('Unknown category: ' + category);
   }
 }
 
 export async function deleteItem(category, itemId) {
-  if (category === 'meat') {
-    return await _deleteItem(meatsDB, itemId);
-  }
+  switch (category) {
+    case 'meat':
+      return await _deleteItem(meatModel, itemId);
 
-  if (category === 'condiments') {
-    return await _deleteItem(condimentsDB, itemId);
-  }
+    case 'condiments':
+      return await _deleteItem(condimentsModel, itemId);
 
-  if (category === 'fruits') {
-    return await _deleteItem(fruitsDB, itemId);
-  }
+    case 'fruits':
+      return await _deleteItem(fruitsModel, itemId);
 
-  if (category === 'products') {
-    return await _deleteItem(productsDB, itemId);
-  }
+    case 'products':
+      return await _deleteItem(productsModel, itemId);
 
-  if (category === 'vegetables') {
-    return await _deleteItem(vegetablesDB, itemId);
+    case 'vegetables':
+      return await _deleteItem(vegetablesModel, itemId);
+
+    default:
+      throw new Error('Unknown category: ' + category);
   }
 }
 
