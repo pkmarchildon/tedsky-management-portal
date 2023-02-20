@@ -3,7 +3,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
 
-import categoriesRouter from './routes/categories.router.js';
+import categoriesRouter from './routes/items.router.js';
 
 const app = express();
 

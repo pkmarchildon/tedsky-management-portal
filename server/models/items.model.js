@@ -1,12 +1,30 @@
 import mongoose from 'mongoose';
 
-import { categorySchema } from './category.schema.js';
+import { categorySchema } from './item.schema.js';
 
 const meatModel = mongoose.model('meats', categorySchema);
 const condimentsModel = mongoose.model('condiments', categorySchema);
 const fruitsModel = mongoose.model('fruits', categorySchema);
 const productsModel = mongoose.model('products', categorySchema);
 const vegetablesModel = mongoose.model('vegetables', categorySchema);
+
+export async function getAllItems() {
+  const meatItems = await _getItem(meatModel);
+  const condimentsItems = await _getItem(condimentsModel);
+  const fruitsItems = await _getItem(fruitsModel);
+  const productsItems = await _getItem(productsModel);
+  const vegetablesItems = await _getItem(vegetablesModel);
+
+  let items = [
+    ...meatItems,
+    ...condimentsItems,
+    ...fruitsItems,
+    ...productsItems,
+    ...vegetablesItems
+  ];
+
+  return items;
+}
 
 export async function getItems(category) {
   switch (category) {

@@ -5,7 +5,7 @@ import {
   httpCreateCategories,
   httpUpdateCategories,
   httpDeleteCategories
-} from './categories.controler.js';
+} from './items.controler.js';
 
 const categoriesRouter = express.Router();
 

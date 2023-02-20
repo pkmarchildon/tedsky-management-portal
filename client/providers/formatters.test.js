@@ -1,4 +1,4 @@
-import { centsToDollars, dollarsToCents } from './functions.js';
+import { centsToDollars, dollarsToCents } from './formatters.js';
 
 test('Convert cents to dollars.', () => {
   expect(centsToDollars(99)).toBe(0.99);

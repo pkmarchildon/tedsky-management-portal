@@ -28,8 +28,8 @@ export function moneyFormatter(amountInCents) {
   return moneyString;
 }
 
-export function nameFormatter(name) {
-  return name.charAt(0).toUpperCase() + name.slice(1);
+export function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function toStringMonthFrench(numericalMonth) {
@@ -83,4 +83,19 @@ export function formDataFormating(event) {
     name: event.target.name,
     value: event.target.value
   };
+}
+
+function formatItemData(item) {
+  item.price = moneyFormatter(item.price);
+  item.lastUpdated = dateFormatter(item.lastUpdated);
+
+  return item;
+}
+
+export function itemsFormatter(items) {
+  items.forEach((item) => {
+    item = formatItemData(item);
+  });
+
+  return items;
 }

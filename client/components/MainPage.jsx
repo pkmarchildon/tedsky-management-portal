@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useReducer } from 'react';
+import { itemReducer } from '@/providers/reducers';
 
 /* Components */
 import NavBar from '@/components/NavBar';
@@ -7,17 +8,18 @@ import UpdateForm from './UpdateForm';
 
 import ItemsTable from './ItemsTable';
 
-export default function MainPage() {
+export default function MainPage({ initialItems }) {
   const [modifyItem, setModifyItem] = useState(false);
   const [createItem, setCreateItem] = useState(false);
   const [itemData, setItemData] = useState({});
+  const [items, dispatch] = useReducer(itemReducer, initialItems);
 
   function handleModifyItem(item) {
     setItemData(item);
     setModifyItem(true);
   }
 
-  function handleCreateItem() {
+  async function handleCreateItem() {
     setCreateItem(true);
   }
 
@@ -26,14 +28,32 @@ export default function MainPage() {
     setCreateItem(false);
   }
 
+  async function createNewItem(newItem) {
+    const res = await fetch('http://localhost:4002/api/items', {
+      method: 'POST',
+      body: JSON.stringify(newItem)
+    });
+
+    const { createdItem } = await res.json();
+
+    // Update client items list.
+    dispatch({
+      type: 'add',
+      data: createdItem
+    });
+  }
+
   return (
     <main>
       <NavBar handleCreateItem={handleCreateItem} />
-      <ItemsTable handleModifyItem={handleModifyItem} />
+      <ItemsTable items={items} handleModifyItem={handleModifyItem} />
 
       {createItem ? (
         <div className='modifyItem-container'>
-          <CreateItemForm closeForm={handleClose} />
+          <CreateItemForm
+            closeForm={handleClose}
+            createNewItem={createNewItem}
+          />
         </div>
       ) : modifyItem ? (
         <div className='modifyItem-container'>

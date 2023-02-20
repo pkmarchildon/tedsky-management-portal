@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 import MainPage from '@/components/MainPage';
 
-export default function Home() {
+export default function Home({ items }) {
   return (
     <>
       <Head>
@@ -12,7 +12,17 @@ export default function Home() {
         <link rel='icon' href='/favicon.svg' />
       </Head>
 
-      <MainPage />
+      <MainPage initialItems={items} />
     </>
   );
 }
+
+Home.getInitialProps = async (ctx) => {
+  const res = await fetch('http://localhost:4002/api/items', {
+    method: 'GET'
+  });
+
+  const { items } = await res.json();
+
+  return { items };
+};

@@ -2,7 +2,7 @@ import { useReducer, useState } from 'react';
 import { Open_Sans } from '@next/font/google';
 import styles from './createForm.module.css';
 
-import { formDataFormating } from '@/providers/functions';
+import { formDataFormating } from '@/providers/formatters';
 import { fieldReducer } from '@/providers/reducers';
 import variables from '../../../server/variables.json';
 
@@ -18,6 +18,13 @@ const openSans = Open_Sans({
 });
 
 const fieldsValues = {
+  category: {
+    id: 'category',
+    label: 'Category',
+    value: '',
+    type: 'optionField',
+    options: variables.categories
+  },
   name: {
     id: 'name',
     label: 'Name',
@@ -94,12 +101,12 @@ function createFields(
   return fields;
 }
 
-export default function CreateItemForm({ closeForm }) {
+export default function CreateItemForm({ closeForm, createNewItem }) {
   const [formData, dispatch] = useReducer(fieldReducer, initialFields);
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (event) => {
-    console.log(formData);
+    createNewItem(formData);
 
     event.preventDefault();
     setSubmitting(true);
@@ -113,6 +120,7 @@ export default function CreateItemForm({ closeForm }) {
 
   const handleChangeTextInput = (event) => {
     const formatedData = formDataFormating(event);
+
     dispatch({
       type: 'create',
       data: formatedData
@@ -124,6 +132,7 @@ export default function CreateItemForm({ closeForm }) {
     }
 
     const formatedData = formDataFormating(event);
+
     dispatch({
       type: 'create',
       data: formatedData

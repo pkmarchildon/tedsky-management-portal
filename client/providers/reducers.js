@@ -1,5 +1,6 @@
 export function fieldReducer(initialData, action) {
   const { name, value } = action.data;
+
   switch (action.type) {
     case 'create': {
       return {
@@ -9,6 +10,20 @@ export function fieldReducer(initialData, action) {
     }
     case 'update': {
     }
+    default: {
+      throw Error('Unknown action: ' + action.type);
+    }
+  }
+}
+
+export function itemReducer(initialData, action) {
+  const item = action.data;
+
+  switch (action.type) {
+    case 'add': {
+      return [...initialData, item];
+    }
+
     default: {
       throw Error('Unknown action: ' + action.type);
     }

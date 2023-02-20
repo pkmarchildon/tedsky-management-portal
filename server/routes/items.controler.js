@@ -1,27 +1,21 @@
 import { v4 as uuidv4 } from 'uuid';
-import mongoose from 'mongoose';
 
 import {
   getItems,
+  getAllItems,
   createItem,
   uptadeItem,
   deleteItem
-} from '../models/categories.model.js';
-
-var categorySchema = new mongoose.Schema({
-  name: String,
-  price: Number,
-  units: String,
-  lastUpdated: Date,
-  store: String,
-  tags: [String],
-  history: []
-});
+} from '../models/items.model.js';
 
 export async function httpGetCategories(req, res) {
   const { category } = req.query;
 
-  return res.status(200).json(await getItems(category));
+  if (category) {
+    return res.status(200).json(await getItems(category));
+  } else {
+    return res.status(200).json(await getAllItems());
+  }
 }
 
 export async function httpCreateCategories(req, res) {
@@ -34,7 +28,9 @@ export async function httpCreateCategories(req, res) {
     itemData.name === null ||
     itemData.price === null ||
     itemData.units === '' ||
-    itemData.units === null
+    itemData.units === null ||
+    itemData.store === null ||
+    itemData.store === ''
   ) {
     return res.status(400).json({ error: 'A property is missing a value' });
   }
@@ -43,17 +39,21 @@ export async function httpCreateCategories(req, res) {
   if (
     itemData.name === undefined ||
     itemData.price === undefined ||
-    itemData.units === undefined
+    itemData.units === undefined ||
+    itemData.store === undefined
   ) {
     return res.status(400).json({ error: 'A property is missing.' });
   }
 
   itemData.itemId = uuidv4();
   itemData.price *= 100;
+  itemData.category = category;
+  itemData.lastUpdated = new Date().toString();
 
-  await createItem(category, itemData);
+  let createdItem = await createItem(category, itemData);
+  let cleanedItem = _cleanMongoObject(createdItem);
 
-  return res.status(200).json(itemData);
+  return res.status(200).json(cleanedItem);
 }
 
 export async function httpUpdateCategories(req, res) {
@@ -79,4 +79,10 @@ export async function httpDeleteCategories(req, res) {
   const response = await deleteItem(category, itemId);
 
   return res.status(204).json(response.body);
+}
+
+function _cleanMongoObject(initialItem) {
+  let { _id, __v, ...returningItem } = initialItem._doc;
+
+  return returningItem;
 }

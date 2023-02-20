@@ -62,5 +62,27 @@
       "value": "Autre",
       "label": "Autre"
     }
+  ],
+  "categories": [
+    {
+      "value": "meat",
+      "label": "Meat"
+    },
+    {
+      "value": "vegetables",
+      "label": "Vegetables"
+    },
+    {
+      "value": "fruits",
+      "label": "Fruits"
+    },
+    {
+      "value": "condiments",
+      "label": "Condiments"
+    },
+    {
+      "value": "products",
+      "label": "Products"
+    }
   ]
 }

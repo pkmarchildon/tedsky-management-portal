@@ -1,5 +1,5 @@
 import { useReducer, useState } from 'react';
-import { formDataFormating } from '@/providers/functions';
+import { formDataFormating } from '@/providers/formatters';
 import { fieldReducer } from '@/providers/reducers';
 import variables from '../../server/variables.json';
 import { Open_Sans } from '@next/font/google';
