@@ -43,7 +43,7 @@ function addEventListeners(id) {
     labelDOMElement.style.left = '10px';
     labelDOMElement.style.color = 'var(--primary-shade-3)';
     labelDOMElement.style.fontSize = '0.8em';
-    labelDOMElement.style.transition = 'all ease-in-out 250ms';
+    labelDOMElement.style.transition = 'all ease-in-out 150ms';
     inputDOMElement.style.backgroundColor = 'transparent';
   });
 
@@ -57,7 +57,15 @@ function addEventListeners(id) {
   });
 }
 
-export default function TextField({ id, label, type, onChange, fieldData }) {
+export default function TextField({
+  id,
+  label,
+  type,
+  onChange,
+  fieldData,
+  disabled,
+  required
+}) {
   const inputId = `${id}-input`;
   const labelId = `${id}-label`;
 
@@ -89,8 +97,9 @@ export default function TextField({ id, label, type, onChange, fieldData }) {
         }
         onChange={onChange}
         style={{ fontFamily: `${openSans.style.fontFamily}` }}
-        required={true}
+        required={required}
         value={fieldData || ''}
+        disabled={disabled || false}
       />
     </fieldset>
   );

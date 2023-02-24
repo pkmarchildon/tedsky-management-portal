@@ -5,7 +5,6 @@ import '@/styles/nav-bar.css';
 import '@/styles/items-table.css';
 import '@/styles/main-page.css';
 import '@/styles/action-button.css';
-import '@/styles/update-form.css';
 
 const openSans = Open_Sans({ subsets: ['latin'] });
 

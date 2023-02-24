@@ -1,0 +1,12 @@
+.tagContainer {
+  width: fit-content;
+  height: fit-content;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background-color: var(--primary-shade-2);
+  color: var(--neutral-shade-6);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}

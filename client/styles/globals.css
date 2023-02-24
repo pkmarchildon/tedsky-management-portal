@@ -74,6 +74,11 @@ main {
   height: 24px;
 }
 
+.icon-container-16 {
+  width: 16px;
+  height: 16px;
+}
+
 .pointer {
   cursor: pointer;
 }

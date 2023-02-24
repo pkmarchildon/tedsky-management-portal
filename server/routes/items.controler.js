@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
-
 import {
   getItems,
   getAllItems,
@@ -7,6 +5,10 @@ import {
   uptadeItem,
   deleteItem
 } from '../models/items.model.js';
+import {
+  itemFieldsFormatter,
+  updatedItemFormatter
+} from '../services/formatting.js';
 
 export async function httpGetCategories(req, res) {
   const { category } = req.query;
@@ -45,12 +47,9 @@ export async function httpCreateCategories(req, res) {
     return res.status(400).json({ error: 'A property is missing.' });
   }
 
-  itemData.itemId = uuidv4();
-  itemData.price *= 100;
-  itemData.category = category;
-  itemData.lastUpdated = new Date().toString();
+  let formatedItem = itemFieldsFormatter(itemData, category);
 
-  let createdItem = await createItem(category, itemData);
+  let createdItem = await createItem(category, formatedItem);
   let cleanedItem = _cleanMongoObject(createdItem);
 
   return res.status(200).json(cleanedItem);
@@ -60,11 +59,9 @@ export async function httpUpdateCategories(req, res) {
   const { category } = req.query;
   const updatedItem = req.body;
 
-  if (updatedItem.price) {
-    updatedItem.price *= 100;
-  }
+  let formatedItem = updatedItemFormatter(updatedItem, category);
 
-  const returnedItem = await uptadeItem(category, updatedItem);
+  const returnedItem = await uptadeItem(category, formatedItem);
 
   if (!returnedItem) {
     return res.status(400).json({ error: 'Could not find the document.' });

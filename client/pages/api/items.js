@@ -9,11 +9,18 @@ export default async function handler(req, res) {
       return res.status(200).json({ items });
 
     case 'POST':
-      let itemData = JSON.parse(req.body);
+      let newItem = JSON.parse(req.body);
 
-      const createdItem = await createItem(itemData);
+      const returnedCreatedItem = await createItem(newItem);
 
-      return res.status(200).json({ createdItem });
+      return res.status(200).json({ returnedCreatedItem });
+
+    case 'PUT':
+      let updatedItem = JSON.parse(req.body);
+
+      const returnedUpdatedItem = await updateItem(updatedItem);
+
+      return res.status(200).json({ returnedUpdatedItem });
 
     default:
       throw new Error('Unknown method : ' + method);
@@ -37,6 +44,20 @@ async function createItem(newItem) {
   const axiosConfig = {
     method: 'post',
     url: `http://localhost:4001?category=${newItem.category}`,
+    data: body
+  };
+
+  const res = await axios(axiosConfig);
+
+  return res.data;
+}
+
+async function updateItem(updatedItem) {
+  let { category, ...body } = updatedItem;
+
+  const axiosConfig = {
+    method: 'put',
+    url: `http://localhost:4001?category=${updatedItem.category}`,
     data: body
   };
 

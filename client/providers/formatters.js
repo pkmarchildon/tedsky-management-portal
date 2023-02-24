@@ -85,9 +85,11 @@ export function formDataFormating(event) {
   };
 }
 
+function tagsFormatter(tags) {}
+
 function formatItemData(item) {
+  //console.log(item);
   item.price = moneyFormatter(item.price);
-  item.lastUpdated = dateFormatter(item.lastUpdated);
 
   return item;
 }
@@ -98,4 +100,41 @@ export function itemsFormatter(items) {
   });
 
   return items;
+}
+
+function formatMoneyStringToCents(moneyString) {
+  let newStr = moneyString.split('.');
+
+  newStr[newStr.length - 1] = newStr[newStr.length - 1].slice(0, -1);
+
+  let num = parseFloat(newStr[0].concat('.').concat(newStr[1])).toFixed(2);
+
+  return num;
+}
+
+function _monthStringNumber(monthNumerical) {
+  let increasedMonth = monthNumerical + 1;
+
+  if (increasedMonth < 10) {
+    return `0${increasedMonth}`;
+  } else {
+    return `${increasedMonth}`;
+  }
+}
+
+function _dateSelectorFormat(dateString) {
+  const date = new Date(dateString);
+
+  const day = date.getDate();
+  const month = _monthStringNumber(date.getMonth());
+  const year = date.getFullYear();
+
+  return `${year}-${month}-${day}`;
+}
+
+export function formatUpdatingItem(item) {
+  item.price = formatMoneyStringToCents(item.price);
+  item.lastUpdated = _dateSelectorFormat(item.lastUpdated);
+
+  return item;
 }

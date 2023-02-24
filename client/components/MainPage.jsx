@@ -1,10 +1,11 @@
 import { useState, useReducer } from 'react';
 import { itemReducer } from '@/providers/reducers';
 
+import { formatUpdatingItem } from '@/providers/formatters';
+
 /* Components */
 import NavBar from '@/components/NavBar';
-import CreateItemForm from './CreateItemForm/CreateItemForm';
-import UpdateForm from './UpdateForm';
+import CreateUpdateForm from './CreateUpdateForm/CreateUpdateForm';
 
 import ItemsTable from './ItemsTable';
 
@@ -15,7 +16,9 @@ export default function MainPage({ initialItems }) {
   const [items, dispatch] = useReducer(itemReducer, initialItems);
 
   function handleModifyItem(item) {
-    setItemData(item);
+    let formatedItem = formatUpdatingItem(item);
+
+    setItemData(formatedItem);
     setModifyItem(true);
   }
 
@@ -26,6 +29,7 @@ export default function MainPage({ initialItems }) {
   function handleClose() {
     setModifyItem(false);
     setCreateItem(false);
+    setItemData({});
   }
 
   async function createNewItem(newItem) {
@@ -34,12 +38,12 @@ export default function MainPage({ initialItems }) {
       body: JSON.stringify(newItem)
     });
 
-    const { createdItem } = await res.json();
+    const { returnedCreatedItem } = await res.json();
 
     // Update client items list.
     dispatch({
       type: 'add',
-      data: createdItem
+      data: returnedCreatedItem
     });
   }
 
@@ -50,14 +54,22 @@ export default function MainPage({ initialItems }) {
 
       {createItem ? (
         <div className='modifyItem-container'>
-          <CreateItemForm
+          <CreateUpdateForm
+            isCreatingItem={true}
+            itemData={itemData}
             closeForm={handleClose}
+            itemsDispatch={dispatch}
             createNewItem={createNewItem}
           />
         </div>
       ) : modifyItem ? (
         <div className='modifyItem-container'>
-          <UpdateForm itemData={itemData} closeForm={handleClose} />
+          <CreateUpdateForm
+            isCreatingItem={false}
+            itemData={itemData}
+            closeForm={handleClose}
+            itemsDispatch={dispatch}
+          />
         </div>
       ) : null}
     </main>

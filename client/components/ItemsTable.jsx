@@ -3,7 +3,6 @@ import { itemsFormatter } from '@/providers/formatters';
 
 /* Components */
 import ItemRow from './ItemRow';
-import { Modify } from './Icons';
 
 const openSans = Open_Sans({
   style: ['normal'],

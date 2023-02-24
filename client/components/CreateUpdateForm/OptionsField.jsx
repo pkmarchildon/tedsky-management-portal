@@ -30,11 +30,24 @@ function fieldInputTransparent(domElement) {
   domElement.style.borderColor = 'var(--neutral-shade-2)';
 }
 
-function addEventListeners(inputId) {
-  let domElement = document.getElementById(inputId);
+function addEventListeners(id) {
+  const inputId = `${id}-input`;
+  const labelId = `${id}-label`;
 
-  domElement.addEventListener('change', () => {
-    fieldInputTransparent(domElement);
+  const inputDOMElement = document.getElementById(inputId);
+  const labelDOMElement = document.getElementById(labelId);
+
+  inputDOMElement.addEventListener('change', () => {
+    fieldInputTransparent(inputDOMElement);
+  });
+
+  inputDOMElement.addEventListener('focus', () => {
+    labelDOMElement.style.color = 'var(--primary-shade-3)';
+    labelDOMElement.style.transition = 'all ease-in-out 150ms';
+  });
+
+  inputDOMElement.addEventListener('blur', () => {
+    labelDOMElement.style.color = 'var(--neutral-shade-6)';
   });
 }
 
@@ -46,13 +59,18 @@ export default function OptionsField({
   fieldData
 }) {
   const inputId = `${id}-input`;
+  const labelId = `${id}-label`;
 
   useEffect(() => {
-    addEventListeners(inputId);
+    addEventListeners(id);
   }, []);
 
   return (
     <fieldset className={styles.fieldContaier}>
+      <label id={labelId} className={styles.fieldLabelFloatingLabel}>
+        {fieldData && label}
+      </label>
+
       <select
         name={id}
         id={inputId}

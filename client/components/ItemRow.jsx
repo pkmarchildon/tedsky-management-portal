@@ -1,5 +1,5 @@
 import { Modify } from './Icons';
-import { capitalizeFirstLetter } from '@/providers/formatters';
+import { capitalizeFirstLetter, dateFormatter } from '@/providers/formatters';
 
 function makeTagsCell(tags) {
   if (tags.length === 0) {
@@ -36,22 +36,39 @@ function makeCategoryCell(category) {
   );
 }
 
+function makeLastUpdatedCell(date) {
+  return <td key='lastUpdated'>{dateFormatter(date)}</td>;
+}
+
 export default function ItemRow({ item, handleModifyItem }) {
   const keys = Object.keys(item);
   let cells = [];
 
   keys.forEach((key) => {
-    if (key === 'tags') {
-      const cellTags = makeTagsCell(item[key]);
-      cells.push(cellTags);
-    } else if (key === 'history') {
-      const cellHistory = makeHistoryCell(item[key]);
-      cells.push(cellHistory);
-    } else if (key === 'category') {
-      const cellCategory = makeCategoryCell(item[key]);
-      cells.push(cellCategory);
-    } else {
-      cells.push(<td key={`${item[key]}`}>{item[key]}</td>);
+    switch (key) {
+      case 'tags':
+        const cellTags = makeTagsCell(item[key]);
+        cells.push(cellTags);
+        break;
+
+      case 'history':
+        const cellHistory = makeHistoryCell(item[key]);
+        cells.push(cellHistory);
+        break;
+
+      case 'category':
+        const cellCategory = makeCategoryCell(item[key]);
+        cells.push(cellCategory);
+        break;
+
+      case 'lastUpdated':
+        const cellDate = makeLastUpdatedCell(item[key]);
+        cells.push(cellDate);
+        break;
+
+      default:
+        cells.push(<td key={`${item[key]}`}>{item[key]}</td>);
+        break;
     }
   });
 

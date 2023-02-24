@@ -14,17 +14,21 @@
 
 .createUpdateFormContainer {
   background-color: var(--background-color);
-  width: fit-content;
+  width: 600px;
   height: fit-content;
+  box-shadow: 0px 4px 4px var(--neutral-shade-2);
+  border-radius: 5px;
   box-sizing: border-box;
   padding: 50px;
-  border-radius: 5px;
-  box-shadow: 0px 4px 4px var(--neutral-shade-2);
-  border: 1px solid var(--neutral-shade-1);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  row-gap: 50px;
+}
+
+.updateFormGridContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 50px;
   row-gap: 50px;
 }
 
@@ -32,7 +36,8 @@
   width: 100%;
   height: fit-content;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  column-gap: 50px;
   box-sizing: border-box;
   padding-left: 0.75em;
   padding-right: 0.75em;
@@ -113,4 +118,30 @@
 
 .fieldText.fill {
   background-color: transparent;
+}
+
+.fieldLabelFloatingLabel {
+  position: absolute;
+  top: -18px;
+  color: var(--neutral-shade-5);
+  font-size: 0.8em;
+  left: 10px;
+}
+
+.tagsFieldContainer {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  row-gap: 15px;
+}
+
+.tagsContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 10px;
+  column-gap: 5px;
 }
