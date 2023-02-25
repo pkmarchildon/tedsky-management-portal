@@ -86,7 +86,7 @@ export default function OptionsField({
         }}
         required={true}
       >
-        {!fieldData && (
+        {!fieldData ? (
           <option
             id={`${id}-emptyOption`}
             name={`${id}-emptyOption`}
@@ -94,6 +94,15 @@ export default function OptionsField({
             className={styles.fieldText}
           >
             {label}
+          </option>
+        ) : (
+          <option
+            id={`${id}-emptyOption`}
+            name={`${id}-emptyOption`}
+            value={fieldData}
+            className={styles.fieldText}
+          >
+            {fieldData}
           </option>
         )}
 

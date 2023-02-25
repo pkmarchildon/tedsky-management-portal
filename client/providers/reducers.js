@@ -45,12 +45,27 @@ export function fieldReducer(initialData, action) {
   }
 }
 
-export function itemReducer(initialData, action) {
-  const item = action.data;
+function _updateItem(items, updatedItem) {
+  const { itemId } = updatedItem;
 
+  const itemIndex = items.findIndex((item) => item.itemId === itemId);
+
+  items[itemIndex] = updatedItem;
+}
+
+export function itemReducer(initialData, action) {
   switch (action.type) {
     case 'add': {
+      const item = action.data;
       return [...initialData, item];
+    }
+
+    case 'update': {
+      const updatedItem = action.data;
+
+      _updateItem(initialData, updatedItem);
+
+      return [...initialData];
     }
 
     default: {

@@ -1,11 +1,10 @@
-export async function createItem(newItem, dispatch) {
+export async function createNewItem(newItem, dispatch) {
   const res = await fetch('http://localhost:4002/api/items', {
     method: 'POST',
     body: JSON.stringify(newItem)
   });
 
   const { returnedCreatedItem } = await res.json();
-  console.log('returned: ', returnedCreatedItem);
 
   // Update client items list.
   dispatch({
@@ -15,8 +14,6 @@ export async function createItem(newItem, dispatch) {
 }
 
 export async function updateItem(updatedItem, dispatch) {
-  //console.log(updatedItem);
-  /*
   const res = await fetch('http://localhost:4002/api/items', {
     method: 'PUT',
     body: JSON.stringify(updatedItem)
@@ -29,5 +26,4 @@ export async function updateItem(updatedItem, dispatch) {
     type: 'update',
     data: returnedUpdatedItem
   });
-  */
 }

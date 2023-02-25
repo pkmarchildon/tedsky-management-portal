@@ -205,7 +205,8 @@ export default function CreateUpdateForm({
   itemData,
   closeForm,
   itemsDispatch,
-  createNewItem
+  createNewItem,
+  updateItem
 }) {
   const [formData, dispatch] = useReducer(fieldReducer, initialFields);
   const [submitting, setSubmitting] = useState(false);
@@ -216,7 +217,7 @@ export default function CreateUpdateForm({
     event.preventDefault();
 
     if (isCreatingItem) {
-      createNewItem(formData);
+      createNewItem(formData, itemsDispatch);
     } else {
       updateItem(formData, itemsDispatch);
     }

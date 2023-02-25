@@ -1,5 +1,6 @@
 import { useState, useReducer } from 'react';
 import { itemReducer } from '@/providers/reducers';
+import { createNewItem, updateItem } from '@/providers/itemOperations';
 
 import { formatUpdatingItem } from '@/providers/formatters';
 
@@ -22,7 +23,7 @@ export default function MainPage({ initialItems }) {
     setModifyItem(true);
   }
 
-  async function handleCreateItem() {
+  function handleCreateItem() {
     setCreateItem(true);
   }
 
@@ -30,21 +31,6 @@ export default function MainPage({ initialItems }) {
     setModifyItem(false);
     setCreateItem(false);
     setItemData({});
-  }
-
-  async function createNewItem(newItem) {
-    const res = await fetch('http://localhost:4002/api/items', {
-      method: 'POST',
-      body: JSON.stringify(newItem)
-    });
-
-    const { returnedCreatedItem } = await res.json();
-
-    // Update client items list.
-    dispatch({
-      type: 'add',
-      data: returnedCreatedItem
-    });
   }
 
   return (
@@ -69,6 +55,7 @@ export default function MainPage({ initialItems }) {
             itemData={itemData}
             closeForm={handleClose}
             itemsDispatch={dispatch}
+            updateItem={updateItem}
           />
         </div>
       ) : null}
