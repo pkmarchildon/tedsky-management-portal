@@ -1,0 +1,29 @@
+.actionButton {
+  background-color: var(--accent-shade-green-3);
+  border: none;
+  border-radius: 5px;
+  color: var(--neutral-shade-7);
+  font-size: 16px;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+
+.actionButton:hover {
+  background-color: var(--accent-shade-green-2);
+}
+
+.actionButton:active {
+  background-color: var(--accent-shade-green-4);
+}
+
+.deleteButton {
+  background-color: var(--accent-shade-red-2);
+}
+
+.deleteButton:hover {
+  background-color: var(--accent-shade-red-1);
+}
+
+.deleteButton:active {
+  background-color: var(--accent-shade-red-3);
+}

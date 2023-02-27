@@ -1,6 +1,5 @@
 import { useState, useReducer } from 'react';
 import { itemReducer } from '@/providers/reducers';
-import { createNewItem, updateItem } from '@/providers/itemOperations';
 
 import { formatUpdatingItem } from '@/providers/formatters';
 
@@ -45,7 +44,6 @@ export default function MainPage({ initialItems }) {
             itemData={itemData}
             closeForm={handleClose}
             itemsDispatch={dispatch}
-            createNewItem={createNewItem}
           />
         </div>
       ) : modifyItem ? (
@@ -55,7 +53,6 @@ export default function MainPage({ initialItems }) {
             itemData={itemData}
             closeForm={handleClose}
             itemsDispatch={dispatch}
-            updateItem={updateItem}
           />
         </div>
       ) : null}

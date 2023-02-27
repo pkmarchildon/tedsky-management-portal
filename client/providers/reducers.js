@@ -53,6 +53,12 @@ function _updateItem(items, updatedItem) {
   items[itemIndex] = updatedItem;
 }
 
+function _deleteItem(items, itemId) {
+  const itemIndex = items.findIndex((item) => item.itemId === itemId);
+
+  items.splice(itemIndex, 1);
+}
+
 export function itemReducer(initialData, action) {
   switch (action.type) {
     case 'add': {
@@ -64,6 +70,14 @@ export function itemReducer(initialData, action) {
       const updatedItem = action.data;
 
       _updateItem(initialData, updatedItem);
+
+      return [...initialData];
+    }
+
+    case 'delete': {
+      const itemId = action.data;
+
+      _deleteItem(initialData, itemId);
 
       return [...initialData];
     }

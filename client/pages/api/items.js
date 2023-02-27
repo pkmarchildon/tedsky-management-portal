@@ -22,6 +22,13 @@ export default async function handler(req, res) {
 
       return res.status(200).json({ returnedUpdatedItem });
 
+    case 'DELETE':
+      let { itemId, category } = JSON.parse(req.body);
+
+      await deleteItem(itemId, category);
+
+      return res.status(200).json({ deletedId: itemId });
+
     default:
       throw new Error('Unknown method : ' + method);
   }
@@ -59,6 +66,17 @@ async function updateItem(updatedItem) {
     method: 'put',
     url: `http://localhost:4001?category=${updatedItem.category}`,
     data: body
+  };
+
+  const res = await axios(axiosConfig);
+
+  return res.data;
+}
+
+async function deleteItem(itemId, category) {
+  const axiosConfig = {
+    method: 'delete',
+    url: `http://localhost:4001?itemId=${itemId}&category=${category}`
   };
 
   const res = await axios(axiosConfig);

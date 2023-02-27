@@ -1,7 +1,11 @@
 import { useReducer, useState } from 'react';
 import { formDataFormating } from '@/providers/formatters';
 import { fieldReducer } from '@/providers/reducers';
-import { updateItem } from '@/providers/itemOperations';
+import {
+  createNewItem,
+  updateItem,
+  deleteItem
+} from '@/providers/itemOperations';
 import { Open_Sans } from '@next/font/google';
 
 import variables from '../../../server/variables.json';
@@ -14,6 +18,7 @@ import OptionsField from './OptionsField';
 import DateSelector from './DateSelector';
 import TagField from '../TagField/TagField';
 import Tag from '../Tag/Tag';
+import ActionButton from '../ActionButton/ActionButton';
 
 const openSans = Open_Sans({
   style: ['normal'],
@@ -204,9 +209,7 @@ export default function CreateUpdateForm({
   isCreatingItem,
   itemData,
   closeForm,
-  itemsDispatch,
-  createNewItem,
-  updateItem
+  itemsDispatch
 }) {
   const [formData, dispatch] = useReducer(fieldReducer, initialFields);
   const [submitting, setSubmitting] = useState(false);
@@ -228,6 +231,11 @@ export default function CreateUpdateForm({
       setSubmitting(false);
     }, 3000);
 
+    closeForm();
+  };
+
+  const handleDelete = () => {
+    deleteItem(formData, itemsDispatch);
     closeForm();
   };
 
@@ -276,6 +284,12 @@ export default function CreateUpdateForm({
       method='post'
     >
       <div className={styles.updateFormGridContainer}>{fields}</div>
+
+      {!isCreatingItem && (
+        <div className={styles.createUpdateFormButtonsContainer}>
+          <ActionButton text='Delete' action={handleDelete} />
+        </div>
+      )}
 
       <div className={styles.createUpdateFormButtonsContainer}>
         <button

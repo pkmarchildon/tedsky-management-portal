@@ -5,7 +5,7 @@ import logo from '@/public/logo.svg';
 /* Components */
 import { UserCircle } from './Icons';
 import SearchBar from './SearchBar/SearchBar';
-import ActionButton from './ActionButton';
+import ActionButton from './ActionButton/ActionButton';
 
 export default function NavBar({ handleCreateItem }) {
   return (

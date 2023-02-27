@@ -27,3 +27,20 @@ export async function updateItem(updatedItem, dispatch) {
     data: returnedUpdatedItem
   });
 }
+
+export async function deleteItem(deleteItem, dispatch) {
+  const { itemId, category } = deleteItem;
+
+  const res = await fetch('http://localhost:4002/api/items', {
+    method: 'DELETE',
+    body: JSON.stringify({ itemId, category })
+  });
+
+  const { deletedId } = await res.json();
+
+  // Update client items list.
+  dispatch({
+    type: 'delete',
+    data: deletedId
+  });
+}
