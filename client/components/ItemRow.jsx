@@ -36,16 +36,34 @@ function makeCategoryCell(category) {
   );
 }
 
+function _isSearchedElement(selectedSearchItemId, itemId) {
+  if (itemId === selectedSearchItemId) {
+    return 'itemsTable-searchedRow';
+  } else {
+    return '';
+  }
+}
+
 function makeLastUpdatedCell(date) {
   return <td key='lastUpdated'>{dateFormatter(date)}</td>;
 }
 
-export default function ItemRow({ item, handleModifyItem }) {
+export default function ItemRow({
+  item,
+  handleModifyItem,
+  selectedSearchItemId,
+  handledSelectedRow
+}) {
   const keys = Object.keys(item);
   let cells = [];
 
   keys.forEach((key) => {
     switch (key) {
+      case 'name':
+        cells.push(
+          <td key={`${item[key]}`}>{capitalizeFirstLetter(item[key])}</td>
+        );
+        break;
       case 'tags':
         const cellTags = makeTagsCell(item[key]);
         cells.push(cellTags);
@@ -78,5 +96,16 @@ export default function ItemRow({ item, handleModifyItem }) {
     </td>
   );
 
-  return <tr className='itemsTable-gridRowLayout'>{cells}</tr>;
+  return (
+    <tr
+      id={`tr-${item.itemId}`}
+      className={`itemsTable-gridRowLayout ${_isSearchedElement(
+        selectedSearchItemId,
+        item.itemId
+      )} pointer`}
+      onClick={() => handledSelectedRow(item)}
+    >
+      {cells}
+    </tr>
+  );
 }

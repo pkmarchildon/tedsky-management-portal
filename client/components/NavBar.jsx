@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Image from 'next/image';
 
 import logo from '@/public/logo.svg';
@@ -6,8 +7,76 @@ import logo from '@/public/logo.svg';
 import { UserCircle } from './Icons';
 import SearchBar from './SearchBar/SearchBar';
 import ActionButton from './ActionButton/ActionButton';
+import SearchItem from './SearchItem/SearchItem';
 
-export default function NavBar({ handleCreateItem }) {
+function _populateSearchResults(results, selectSearchItem) {
+  let returningResults = [];
+
+  results.forEach((result) => {
+    returningResults.push(
+      <SearchItem
+        key={result.itemId}
+        item={result}
+        selectSearchItem={selectSearchItem}
+      />
+    );
+  });
+
+  return returningResults;
+}
+
+export default function NavBar({
+  handleCreateItem,
+  items,
+  handleSelectedSearchItem
+}) {
+  const [isSearching, setIsSearching] = useState(false);
+  const [filteredItems, setFilteredItems] = useState(items);
+  const [isSelectingSearchItem, setIsSelectingSearchItem] = useState(false);
+
+  function _clearSearchBar() {
+    let searchBarDOMElement = document.getElementById('searchBar-items');
+    searchBarDOMElement.value = '';
+    setFilteredItems(items);
+  }
+
+  function searchInput(input) {
+    let returnedItems = items.filter((item) => {
+      return item.name.toLowerCase().includes(input.toLowerCase());
+    });
+
+    setFilteredItems(returnedItems);
+  }
+
+  function selectSearchItem(item) {
+    setIsSelectingSearchItem(true);
+
+    handleSelectedSearchItem(item);
+    setIsSearching(false);
+    setIsSelectingSearchItem(false);
+    _clearSearchBar();
+  }
+
+  function _handleOverSearchItem() {
+    setIsSelectingSearchItem(true);
+  }
+
+  function _handleOutSearchItem() {
+    setIsSelectingSearchItem(false);
+  }
+
+  function handleLostFocusSearchBar() {
+    if (!isSelectingSearchItem) {
+      setIsSearching(false);
+
+      _clearSearchBar();
+    }
+  }
+
+  function handleFocusSearchBar() {
+    setIsSearching(true);
+  }
+
   return (
     <nav className='navBar-container'>
       <Image src={logo} alt='Tedski' priority='true' />
@@ -34,7 +103,29 @@ export default function NavBar({ handleCreateItem }) {
           </div>
 
           <div className='navBar-bottomRow-container'>
-            <SearchBar />
+            <SearchBar
+              idLabel='items'
+              searchInput={searchInput}
+              handleLostFocusSearchBar={handleLostFocusSearchBar}
+              handleFocusSearchBar={handleFocusSearchBar}
+            />
+
+            {isSearching && (
+              <span className='navBar-searchResults-divider'></span>
+            )}
+
+            {isSearching && (
+              <div
+                id='items-searchResults-container'
+                className='navBar-searchResults-container'
+                onMouseEnter={_handleOverSearchItem}
+                onMouseLeave={_handleOutSearchItem}
+              >
+                <div className='navBar-searchResults-gridContainer'>
+                  {_populateSearchResults(filteredItems, selectSearchItem)}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

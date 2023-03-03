@@ -1,10 +1,11 @@
 import styles from './SearchBar.module.css';
 
-export default function SearchBar({}) {
-  function searchInput(e) {
-    console.log(e.value);
-  }
-
+export default function SearchBar({
+  idLabel,
+  searchInput,
+  handleLostFocusSearchBar,
+  handleFocusSearchBar
+}) {
   return (
     <form className={styles.searchBarContainer} action={null}>
       {/* Icon */}
@@ -25,11 +26,14 @@ export default function SearchBar({}) {
 
       {/* Input field */}
       <input
+        id={`searchBar-${idLabel}`}
         className={styles.searchBarInput}
         type='search'
         placeholder='Search'
         autoComplete='off'
-        onChange={searchInput}
+        onChange={(e) => searchInput(e.target.value)}
+        onBlur={() => handleLostFocusSearchBar(`searchBar-${idLabel}`)}
+        onFocus={handleFocusSearchBar}
       />
     </form>
   );

@@ -1,14 +1,13 @@
 .searchBarContainer {
-  max-height: 40px;
-  min-height: 40px;
-  max-width: var(--searchBar-width);
-  min-width: var(--searchBar-width);
-  background-color: transparent;
+  height: var(--searchBar-height);
+  width: var(--searchBar-width);
+  background-color: var(--background-color);
   color: var(--neutral-shade-5);
   display: flex;
   align-items: center;
   justify-content: flex-start;
   position: relative;
+  z-index: 1;
 }
 
 .searchBarIcon {
@@ -27,15 +26,25 @@
   height: 40px;
   padding: 8px 10px;
   padding-left: 40px;
-  border-radius: 3px;
+  border-radius: var(--inputField-borderRadius);
   outline: none;
   border: 1px solid transparent;
 }
 
 .searchBarInput:hover,
 .searchBarInput:focus {
-  background-color: transparent;
+  background-color: var(--background-color);
   border: 1px solid var(--primary-shade-3);
-  box-shadow: 0 0 0 4px var(--primary-shade-1);
   color: var(--neutral-shade-6);
+}
+
+.searchBarInput:hover {
+  box-shadow: 0 0 0 4px var(--primary-shade-1);
+}
+
+.searchBarInput:focus {
+  border-bottom: none;
+  border-radius: var(--inputField-borderRadius) var(--inputField-borderRadius)
+    0px 0px;
+  box-shadow: 4px -4px var(--primary-shade-1), -4px -4px var(--primary-shade-1);
 }

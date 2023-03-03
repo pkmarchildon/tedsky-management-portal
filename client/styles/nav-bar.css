@@ -53,3 +53,47 @@
 .navBar-userIcon {
   color: var(--neutral-shade-3);
 }
+
+.navBar-bottomRow-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+}
+
+.navBar-searchResults-container {
+  position: absolute;
+  top: var(--searchBar-height);
+  width: var(--searchBar-width);
+  height: 300px;
+  box-sizing: border-box;
+  padding: 8px;
+  background-color: var(--background-color);
+  border-bottom: 1px solid var(--primary-shade-3);
+  border-left: 1px solid var(--primary-shade-3);
+  border-right: 1px solid var(--primary-shade-3);
+  border-radius: 0px 0px var(--inputField-borderRadius)
+    var(--inputField-borderRadius);
+  box-shadow: 0px 0px 0px 4px var(--primary-shade-1);
+
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  row-gap: 5px;
+  color: var(--neutral-shade-6);
+  overflow: scroll;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.navBar-searchResults-container::-webkit-scrollbar {
+  display: none;
+}
+
+.navBar-searchResults-divider {
+  display: flex;
+  width: 75%;
+  border-bottom: 1px solid var(--primary-shade-3);
+  z-index: 10;
+}

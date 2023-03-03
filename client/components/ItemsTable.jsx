@@ -11,7 +11,12 @@ const openSans = Open_Sans({
   fallback: ['Helvetica Neue', 'Helvetica', 'system-ui', 'Arial']
 });
 
-function makeTable(items, handleModifyItem) {
+function makeTable(
+  items,
+  handleModifyItem,
+  selectedSearchItemId,
+  handledSelectedRow
+) {
   let rows = [];
 
   for (let item in items) {
@@ -20,6 +25,8 @@ function makeTable(items, handleModifyItem) {
         key={items[item].itemId}
         item={items[item]}
         handleModifyItem={handleModifyItem}
+        selectedSearchItemId={selectedSearchItemId}
+        handledSelectedRow={handledSelectedRow}
       />
     );
   }
@@ -27,7 +34,12 @@ function makeTable(items, handleModifyItem) {
   return rows;
 }
 
-export default function ItemsTable({ items, handleModifyItem }) {
+export default function ItemsTable({
+  items,
+  handleModifyItem,
+  selectedSearchItemId,
+  handledSelectedRow
+}) {
   const itemsData = structuredClone(items);
 
   let formattedItems = itemsFormatter(itemsData);
@@ -51,7 +63,14 @@ export default function ItemsTable({ items, handleModifyItem }) {
         </tr>
       </thead>
 
-      <tbody>{makeTable(formattedItems, handleModifyItem)}</tbody>
+      <tbody>
+        {makeTable(
+          formattedItems,
+          handleModifyItem,
+          selectedSearchItemId,
+          handledSelectedRow
+        )}
+      </tbody>
     </table>
   );
 }

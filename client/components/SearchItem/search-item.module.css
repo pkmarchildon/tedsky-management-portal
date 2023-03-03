@@ -1,0 +1,12 @@
+.searchItemContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  column-gap: 6px;
+}
+
+.searchItemCategoryMarker {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
