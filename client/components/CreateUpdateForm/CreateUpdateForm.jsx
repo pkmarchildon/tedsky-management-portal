@@ -1,11 +1,7 @@
 import { useReducer, useState } from 'react';
 import { formDataFormating } from '@/providers/formatters';
 import { fieldReducer } from '@/providers/reducers';
-import {
-  createNewItem,
-  updateItem,
-  deleteItem
-} from '@/providers/itemOperations';
+import { createNewItem, updateItem } from '@/providers/itemOperations';
 import { Open_Sans } from '@next/font/google';
 
 import variables from '../../../server/variables.json';
@@ -77,9 +73,6 @@ const fieldsValues = {
     value: '',
     type: 'optionField',
     options: variables.units
-  },
-  tags: {
-    type: 'tagField'
   }
 };
 
@@ -90,7 +83,8 @@ let initialFields = {
   price: 0,
   units: '',
   store: '',
-  tags: []
+  brand: '',
+  history: []
 };
 
 function _createTags(tags, removeTag) {
@@ -203,13 +197,15 @@ function _setInitialFields(itemData) {
   initialFields.lastUpdated = itemData.lastUpdated;
   initialFields.store = itemData.store;
   initialFields.tags = itemData.tags;
+  initialFields.brand = itemData.brand;
 }
 
 export default function CreateUpdateForm({
   isCreatingItem,
   itemData,
   closeForm,
-  itemsDispatch
+  itemsDispatch,
+  deleteItem
 }) {
   const [formData, dispatch] = useReducer(fieldReducer, initialFields);
   const [submitting, setSubmitting] = useState(false);

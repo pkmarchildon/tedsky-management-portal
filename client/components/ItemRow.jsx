@@ -54,42 +54,39 @@ export default function ItemRow({
   selectedSearchItemId,
   handledSelectedRow
 }) {
-  const keys = Object.keys(item);
   let cells = [];
 
-  keys.forEach((key) => {
-    switch (key) {
-      case 'name':
-        cells.push(
-          <td key={`${item[key]}`}>{capitalizeFirstLetter(item[key])}</td>
-        );
-        break;
-      case 'tags':
-        const cellTags = makeTagsCell(item[key]);
-        cells.push(cellTags);
-        break;
+  // ID
+  cells.push(<td key={`${item.itemId}`}>{item.itemId}</td>);
 
-      case 'history':
-        const cellHistory = makeHistoryCell(item[key]);
-        cells.push(cellHistory);
-        break;
+  // NAME
+  cells.push(<td key={`${item.name}`}>{capitalizeFirstLetter(item.name)}</td>);
 
-      case 'category':
-        const cellCategory = makeCategoryCell(item[key]);
-        cells.push(cellCategory);
-        break;
+  // CATEGORY
+  cells.push(makeCategoryCell(item.category));
 
-      case 'lastUpdated':
-        const cellDate = makeLastUpdatedCell(item[key]);
-        cells.push(cellDate);
-        break;
+  // PRICE
+  cells.push(<td key={`${item.price}`}>{item.price}</td>);
 
-      default:
-        cells.push(<td key={`${item[key]}`}>{item[key]}</td>);
-        break;
-    }
-  });
+  // UNITS
+  cells.push(<td key={`${item.units}`}>{item.units}</td>);
 
+  // LAST UPDATED
+  cells.push(makeLastUpdatedCell(item.lastUpdated));
+
+  // STORE
+  cells.push(<td key={`${item.store}`}>{item.store}</td>);
+
+  // BRAND
+  cells.push(<td key={`${item.brand}`}>{item.brand}</td>);
+
+  // TAGS
+  //cells.push(makeTagsCell(item.tags));
+
+  // HISTORY
+  cells.push(makeHistoryCell(item.history));
+
+  // MODIFY
   cells.push(
     <td key='modify' onClick={() => handleModifyItem(item)}>
       {<Modify color='--accent-shade-green-3' />}

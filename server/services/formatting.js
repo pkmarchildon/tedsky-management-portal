@@ -10,9 +10,18 @@ export function itemFieldsFormatter(itemData, category) {
 }
 
 export function updatedItemFormatter(itemData, category) {
+  // Add to history
+  itemData = updateHistory(itemData);
+
   if (itemData.price) {
     itemData.price = parseFloat(itemData.price) * 100;
   }
+
+  /*
+  if (itemData.tags) {
+    itemData.tags = tagsFormatter(itemData.tags);
+  }
+  */
 
   itemData.category = category;
   itemData.lastUpdated = new Date().toString();
@@ -20,12 +29,30 @@ export function updatedItemFormatter(itemData, category) {
   return itemData;
 }
 
-function tagsFormatter(inputTags) {
+export function tagsFormatter(inputTags) {
   let tags = [];
 
   if (inputTags) {
-    tags = inputTags.split(' ');
+    tags = inputTags.split(/[\s,]+/);
   }
 
   return tags;
+}
+
+export function updateHistory(itemData) {
+  let isInHistory = false;
+  const { price, units, lastUpdated, store, brand } = itemData;
+
+  itemData.history.forEach((historyItem) => {
+    if (historyItem.lastUpdated.getDate() === itemData.lastUpdated.getDate()) {
+      isInHistory = true;
+      return;
+    }
+  });
+
+  if (!isInHistory) {
+    itemData.history.push({ price, units, lastUpdated, store, brand });
+  }
+
+  return itemData;
 }

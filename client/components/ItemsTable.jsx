@@ -58,7 +58,8 @@ export default function ItemsTable({
           <th key='headUnits'>UNITS</th>
           <th key='headLastUpdated'>LAST UPDATED</th>
           <th key='headStore'>STORE</th>
-          <th key='headTags'>TAGS</th>
+          <th key='headBrand'>BRAND</th>
+          {/*<th key='headTags'>TAGS</th>*/}
           <th key='headHistory'>HISTORY</th>
         </tr>
       </thead>

@@ -2,6 +2,7 @@ import { useState, useReducer } from 'react';
 import { itemReducer } from '@/providers/reducers';
 
 import { formatUpdatingItem } from '@/providers/formatters';
+import { deleteItem } from '@/providers/itemOperations';
 
 /* Components */
 import NavBar from '@/components/NavBar';
@@ -60,6 +61,11 @@ export default function MainPage({ initialItems }) {
     selectedDOMItem.classList.add('itemsTable-searchedRow');
   }
 
+  function handleDelete(formData, itemsDispatch) {
+    deleteItem(formData, itemsDispatch);
+    setSelectedSearchItemId('');
+  }
+
   return (
     <main>
       <NavBar
@@ -81,6 +87,7 @@ export default function MainPage({ initialItems }) {
             itemData={itemData}
             closeForm={handleClose}
             itemsDispatch={dispatch}
+            deleteItem={handleDelete}
           />
         </div>
       ) : modifyItem ? (
@@ -90,6 +97,7 @@ export default function MainPage({ initialItems }) {
             itemData={itemData}
             closeForm={handleClose}
             itemsDispatch={dispatch}
+            deleteItem={handleDelete}
           />
         </div>
       ) : null}
