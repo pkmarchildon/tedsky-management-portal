@@ -1,0 +1,1 @@
+self.__FONT_LOADER_MANIFEST={pages:{"/_app":["static/media/647e3efd824faf1c.p.woff2"],"/":["static/media/d472c0cd99519119.p.woff2"]},app:{}};
