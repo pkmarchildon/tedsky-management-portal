@@ -38,7 +38,7 @@ async function getAllItems() {
   const axiosConfig = {
     method: 'GET',
     headers: {},
-    url: 'http://localhost:4001/'
+    url: process.env.SERVER_URL
   };
 
   const res = await axios(axiosConfig);
@@ -50,7 +50,7 @@ async function createItem(newItem) {
 
   const axiosConfig = {
     method: 'post',
-    url: `http://localhost:4001?category=${newItem.category}`,
+    url: `${process.env.SERVER_URL}?category=${newItem.category}`,
     data: body
   };
 
@@ -64,7 +64,7 @@ async function updateItem(updatedItem) {
 
   const axiosConfig = {
     method: 'put',
-    url: `http://localhost:4001?category=${updatedItem.category}`,
+    url: `${process.env.SERVER_URL}?category=${updatedItem.category}`,
     data: body
   };
 
@@ -76,7 +76,7 @@ async function updateItem(updatedItem) {
 async function deleteItem(itemId, category) {
   const axiosConfig = {
     method: 'delete',
-    url: `http://localhost:4001?itemId=${itemId}&category=${category}`
+    url: `${process.env.SERVER_URL}?itemId=${itemId}&category=${category}`
   };
 
   const res = await axios(axiosConfig);

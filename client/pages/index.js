@@ -18,7 +18,7 @@ export default function Home({ items }) {
 }
 
 Home.getInitialProps = async (ctx) => {
-  const res = await fetch('http://localhost:4002/api/items', {
+  const res = await fetch(`${process.env.CLIENT_URL}api/items`, {
     method: 'GET'
   });
 
