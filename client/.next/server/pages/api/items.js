@@ -1,35 +1,99 @@
 "use strict";
-/*
- * ATTENTION: An "eval-source-map" devtool has been used.
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
 (() => {
 var exports = {};
-exports.id = "pages/api/items";
-exports.ids = ["pages/api/items"];
+exports.id = 180;
+exports.ids = [180];
 exports.modules = {
 
-/***/ "axios":
-/*!************************!*\
-  !*** external "axios" ***!
-  \************************/
+/***/ 648:
 /***/ ((module) => {
 
 module.exports = import("axios");;
 
 /***/ }),
 
-/***/ "(api)/./pages/api/items.js":
-/*!****************************!*\
-  !*** ./pages/api/items.js ***!
-  \****************************/
+/***/ 892:
 /***/ ((__webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.a(__webpack_module__, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ handler)\n/* harmony export */ });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"axios\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([axios__WEBPACK_IMPORTED_MODULE_0__]);\naxios__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];\n\nasync function handler(req, res) {\n    const { method  } = req;\n    switch(method){\n        case \"GET\":\n            const items = await getAllItems();\n            return res.status(200).json({\n                items\n            });\n        case \"POST\":\n            let newItem = JSON.parse(req.body);\n            const returnedCreatedItem = await createItem(newItem);\n            return res.status(200).json({\n                returnedCreatedItem\n            });\n        case \"PUT\":\n            let updatedItem = JSON.parse(req.body);\n            const returnedUpdatedItem = await updateItem(updatedItem);\n            return res.status(200).json({\n                returnedUpdatedItem\n            });\n        case \"DELETE\":\n            let { itemId , category  } = JSON.parse(req.body);\n            await deleteItem(itemId, category);\n            return res.status(200).json({\n                deletedId: itemId\n            });\n        default:\n            throw new Error(\"Unknown method : \" + method);\n    }\n}\nasync function getAllItems() {\n    const axiosConfig = {\n        method: \"GET\",\n        headers: {},\n        url: process.env.SERVER_URL\n    };\n    const res = await (0,axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(axiosConfig);\n    return res.data;\n}\nasync function createItem(newItem) {\n    let { category , ...body } = newItem;\n    const axiosConfig = {\n        method: \"post\",\n        url: `${process.env.SERVER_URL}?category=${newItem.category}`,\n        data: body\n    };\n    const res = await (0,axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(axiosConfig);\n    return res.data;\n}\nasync function updateItem(updatedItem) {\n    let { category , ...body } = updatedItem;\n    const axiosConfig = {\n        method: \"put\",\n        url: `${process.env.SERVER_URL}?category=${updatedItem.category}`,\n        data: body\n    };\n    const res = await (0,axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(axiosConfig);\n    return res.data;\n}\nasync function deleteItem(itemId, category) {\n    const axiosConfig = {\n        method: \"delete\",\n        url: `${process.env.SERVER_URL}?itemId=${itemId}&category=${category}`\n    };\n    const res = await (0,axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(axiosConfig);\n    return res.data;\n}\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwaSkvLi9wYWdlcy9hcGkvaXRlbXMuanMuanMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7QUFBMEI7QUFFWCxlQUFlQyxRQUFRQyxHQUFHLEVBQUVDLEdBQUcsRUFBRTtJQUM5QyxNQUFNLEVBQUVDLE9BQU0sRUFBRSxHQUFHRjtJQUVuQixPQUFRRTtRQUNOLEtBQUs7WUFDSCxNQUFNQyxRQUFRLE1BQU1DO1lBQ3BCLE9BQU9ILElBQUlJLE1BQU0sQ0FBQyxLQUFLQyxJQUFJLENBQUM7Z0JBQUVIO1lBQU07UUFFdEMsS0FBSztZQUNILElBQUlJLFVBQVVDLEtBQUtDLEtBQUssQ0FBQ1QsSUFBSVUsSUFBSTtZQUVqQyxNQUFNQyxzQkFBc0IsTUFBTUMsV0FBV0w7WUFFN0MsT0FBT04sSUFBSUksTUFBTSxDQUFDLEtBQUtDLElBQUksQ0FBQztnQkFBRUs7WUFBb0I7UUFFcEQsS0FBSztZQUNILElBQUlFLGNBQWNMLEtBQUtDLEtBQUssQ0FBQ1QsSUFBSVUsSUFBSTtZQUVyQyxNQUFNSSxzQkFBc0IsTUFBTUMsV0FBV0Y7WUFFN0MsT0FBT1osSUFBSUksTUFBTSxDQUFDLEtBQUtDLElBQUksQ0FBQztnQkFBRVE7WUFBb0I7UUFFcEQsS0FBSztZQUNILElBQUksRUFBRUUsT0FBTSxFQUFFQyxTQUFRLEVBQUUsR0FBR1QsS0FBS0MsS0FBSyxDQUFDVCxJQUFJVSxJQUFJO1lBRTlDLE1BQU1RLFdBQVdGLFFBQVFDO1lBRXpCLE9BQU9oQixJQUFJSSxNQUFNLENBQUMsS0FBS0MsSUFBSSxDQUFDO2dCQUFFYSxXQUFXSDtZQUFPO1FBRWxEO1lBQ0UsTUFBTSxJQUFJSSxNQUFNLHNCQUFzQmxCLFFBQVE7SUFDbEQ7QUFDRixDQUFDO0FBRUQsZUFBZUUsY0FBYztJQUMzQixNQUFNaUIsY0FBYztRQUNsQm5CLFFBQVE7UUFDUm9CLFNBQVMsQ0FBQztRQUNWQyxLQUFLQyxRQUFRQyxHQUFHLENBQUNDLFVBQVU7SUFDN0I7SUFFQSxNQUFNekIsTUFBTSxNQUFNSCxpREFBS0EsQ0FBQ3VCO0lBQ3hCLE9BQU9wQixJQUFJMEIsSUFBSTtBQUNqQjtBQUVBLGVBQWVmLFdBQVdMLE9BQU8sRUFBRTtJQUNqQyxJQUFJLEVBQUVVLFNBQVEsRUFBRSxHQUFHUCxNQUFNLEdBQUdIO0lBRTVCLE1BQU1jLGNBQWM7UUFDbEJuQixRQUFRO1FBQ1JxQixLQUFLLENBQUMsRUFBRUMsUUFBUUMsR0FBRyxDQUFDQyxVQUFVLENBQUMsVUFBVSxFQUFFbkIsUUFBUVUsUUFBUSxDQUFDLENBQUM7UUFDN0RVLE1BQU1qQjtJQUNSO0lBRUEsTUFBTVQsTUFBTSxNQUFNSCxpREFBS0EsQ0FBQ3VCO0lBRXhCLE9BQU9wQixJQUFJMEIsSUFBSTtBQUNqQjtBQUVBLGVBQWVaLFdBQVdGLFdBQVcsRUFBRTtJQUNyQyxJQUFJLEVBQUVJLFNBQVEsRUFBRSxHQUFHUCxNQUFNLEdBQUdHO0lBRTVCLE1BQU1RLGNBQWM7UUFDbEJuQixRQUFRO1FBQ1JxQixLQUFLLENBQUMsRUFBRUMsUUFBUUMsR0FBRyxDQUFDQyxVQUFVLENBQUMsVUFBVSxFQUFFYixZQUFZSSxRQUFRLENBQUMsQ0FBQztRQUNqRVUsTUFBTWpCO0lBQ1I7SUFFQSxNQUFNVCxNQUFNLE1BQU1ILGlEQUFLQSxDQUFDdUI7SUFFeEIsT0FBT3BCLElBQUkwQixJQUFJO0FBQ2pCO0FBRUEsZUFBZVQsV0FBV0YsTUFBTSxFQUFFQyxRQUFRLEVBQUU7SUFDMUMsTUFBTUksY0FBYztRQUNsQm5CLFFBQVE7UUFDUnFCLEtBQUssQ0FBQyxFQUFFQyxRQUFRQyxHQUFHLENBQUNDLFVBQVUsQ0FBQyxRQUFRLEVBQUVWLE9BQU8sVUFBVSxFQUFFQyxTQUFTLENBQUM7SUFDeEU7SUFFQSxNQUFNaEIsTUFBTSxNQUFNSCxpREFBS0EsQ0FBQ3VCO0lBRXhCLE9BQU9wQixJQUFJMEIsSUFBSTtBQUNqQiIsInNvdXJjZXMiOlsid2VicGFjazovL21hbmFnZW1lbnQtcG9ydGFsLy4vcGFnZXMvYXBpL2l0ZW1zLmpzPzgyNTYiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IGF4aW9zIGZyb20gJ2F4aW9zJztcblxuZXhwb3J0IGRlZmF1bHQgYXN5bmMgZnVuY3Rpb24gaGFuZGxlcihyZXEsIHJlcykge1xuICBjb25zdCB7IG1ldGhvZCB9ID0gcmVxO1xuXG4gIHN3aXRjaCAobWV0aG9kKSB7XG4gICAgY2FzZSAnR0VUJzpcbiAgICAgIGNvbnN0IGl0ZW1zID0gYXdhaXQgZ2V0QWxsSXRlbXMoKTtcbiAgICAgIHJldHVybiByZXMuc3RhdHVzKDIwMCkuanNvbih7IGl0ZW1zIH0pO1xuXG4gICAgY2FzZSAnUE9TVCc6XG4gICAgICBsZXQgbmV3SXRlbSA9IEpTT04ucGFyc2UocmVxLmJvZHkpO1xuXG4gICAgICBjb25zdCByZXR1cm5lZENyZWF0ZWRJdGVtID0gYXdhaXQgY3JlYXRlSXRlbShuZXdJdGVtKTtcblxuICAgICAgcmV0dXJuIHJlcy5zdGF0dXMoMjAwKS5qc29uKHsgcmV0dXJuZWRDcmVhdGVkSXRlbSB9KTtcblxuICAgIGNhc2UgJ1BVVCc6XG4gICAgICBsZXQgdXBkYXRlZEl0ZW0gPSBKU09OLnBhcnNlKHJlcS5ib2R5KTtcblxuICAgICAgY29uc3QgcmV0dXJuZWRVcGRhdGVkSXRlbSA9IGF3YWl0IHVwZGF0ZUl0ZW0odXBkYXRlZEl0ZW0pO1xuXG4gICAgICByZXR1cm4gcmVzLnN0YXR1cygyMDApLmpzb24oeyByZXR1cm5lZFVwZGF0ZWRJdGVtIH0pO1xuXG4gICAgY2FzZSAnREVMRVRFJzpcbiAgICAgIGxldCB7IGl0ZW1JZCwgY2F0ZWdvcnkgfSA9IEpTT04ucGFyc2UocmVxLmJvZHkpO1xuXG4gICAgICBhd2FpdCBkZWxldGVJdGVtKGl0ZW1JZCwgY2F0ZWdvcnkpO1xuXG4gICAgICByZXR1cm4gcmVzLnN0YXR1cygyMDApLmpzb24oeyBkZWxldGVkSWQ6IGl0ZW1JZCB9KTtcblxuICAgIGRlZmF1bHQ6XG4gICAgICB0aHJvdyBuZXcgRXJyb3IoJ1Vua25vd24gbWV0aG9kIDogJyArIG1ldGhvZCk7XG4gIH1cbn1cblxuYXN5bmMgZnVuY3Rpb24gZ2V0QWxsSXRlbXMoKSB7XG4gIGNvbnN0IGF4aW9zQ29uZmlnID0ge1xuICAgIG1ldGhvZDogJ0dFVCcsXG4gICAgaGVhZGVyczoge30sXG4gICAgdXJsOiBwcm9jZXNzLmVudi5TRVJWRVJfVVJMXG4gIH07XG5cbiAgY29uc3QgcmVzID0gYXdhaXQgYXhpb3MoYXhpb3NDb25maWcpO1xuICByZXR1cm4gcmVzLmRhdGE7XG59XG5cbmFzeW5jIGZ1bmN0aW9uIGNyZWF0ZUl0ZW0obmV3SXRlbSkge1xuICBsZXQgeyBjYXRlZ29yeSwgLi4uYm9keSB9ID0gbmV3SXRlbTtcblxuICBjb25zdCBheGlvc0NvbmZpZyA9IHtcbiAgICBtZXRob2Q6ICdwb3N0JyxcbiAgICB1cmw6IGAke3Byb2Nlc3MuZW52LlNFUlZFUl9VUkx9P2NhdGVnb3J5PSR7bmV3SXRlbS5jYXRlZ29yeX1gLFxuICAgIGRhdGE6IGJvZHlcbiAgfTtcblxuICBjb25zdCByZXMgPSBhd2FpdCBheGlvcyhheGlvc0NvbmZpZyk7XG5cbiAgcmV0dXJuIHJlcy5kYXRhO1xufVxuXG5hc3luYyBmdW5jdGlvbiB1cGRhdGVJdGVtKHVwZGF0ZWRJdGVtKSB7XG4gIGxldCB7IGNhdGVnb3J5LCAuLi5ib2R5IH0gPSB1cGRhdGVkSXRlbTtcblxuICBjb25zdCBheGlvc0NvbmZpZyA9IHtcbiAgICBtZXRob2Q6ICdwdXQnLFxuICAgIHVybDogYCR7cHJvY2Vzcy5lbnYuU0VSVkVSX1VSTH0/Y2F0ZWdvcnk9JHt1cGRhdGVkSXRlbS5jYXRlZ29yeX1gLFxuICAgIGRhdGE6IGJvZHlcbiAgfTtcblxuICBjb25zdCByZXMgPSBhd2FpdCBheGlvcyhheGlvc0NvbmZpZyk7XG5cbiAgcmV0dXJuIHJlcy5kYXRhO1xufVxuXG5hc3luYyBmdW5jdGlvbiBkZWxldGVJdGVtKGl0ZW1JZCwgY2F0ZWdvcnkpIHtcbiAgY29uc3QgYXhpb3NDb25maWcgPSB7XG4gICAgbWV0aG9kOiAnZGVsZXRlJyxcbiAgICB1cmw6IGAke3Byb2Nlc3MuZW52LlNFUlZFUl9VUkx9P2l0ZW1JZD0ke2l0ZW1JZH0mY2F0ZWdvcnk9JHtjYXRlZ29yeX1gXG4gIH07XG5cbiAgY29uc3QgcmVzID0gYXdhaXQgYXhpb3MoYXhpb3NDb25maWcpO1xuXG4gIHJldHVybiByZXMuZGF0YTtcbn1cbiJdLCJuYW1lcyI6WyJheGlvcyIsImhhbmRsZXIiLCJyZXEiLCJyZXMiLCJtZXRob2QiLCJpdGVtcyIsImdldEFsbEl0ZW1zIiwic3RhdHVzIiwianNvbiIsIm5ld0l0ZW0iLCJKU09OIiwicGFyc2UiLCJib2R5IiwicmV0dXJuZWRDcmVhdGVkSXRlbSIsImNyZWF0ZUl0ZW0iLCJ1cGRhdGVkSXRlbSIsInJldHVybmVkVXBkYXRlZEl0ZW0iLCJ1cGRhdGVJdGVtIiwiaXRlbUlkIiwiY2F0ZWdvcnkiLCJkZWxldGVJdGVtIiwiZGVsZXRlZElkIiwiRXJyb3IiLCJheGlvc0NvbmZpZyIsImhlYWRlcnMiLCJ1cmwiLCJwcm9jZXNzIiwiZW52IiwiU0VSVkVSX1VSTCIsImRhdGEiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///(api)/./pages/api/items.js\n");
+__webpack_require__.a(__webpack_module__, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ handler)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(648);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([axios__WEBPACK_IMPORTED_MODULE_0__]);
+axios__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
+async function handler(req, res) {
+    const { method  } = req;
+    switch(method){
+        case "GET":
+            const items = await getAllItems();
+            return res.status(200).json({
+                items
+            });
+        case "POST":
+            let newItem = JSON.parse(req.body);
+            const returnedCreatedItem = await createItem(newItem);
+            return res.status(200).json({
+                returnedCreatedItem
+            });
+        case "PUT":
+            let updatedItem = JSON.parse(req.body);
+            const returnedUpdatedItem = await updateItem(updatedItem);
+            return res.status(200).json({
+                returnedUpdatedItem
+            });
+        case "DELETE":
+            let { itemId , category  } = JSON.parse(req.body);
+            await deleteItem(itemId, category);
+            return res.status(200).json({
+                deletedId: itemId
+            });
+        default:
+            throw new Error("Unknown method : " + method);
+    }
+}
+async function getAllItems() {
+    const axiosConfig = {
+        method: "GET",
+        headers: {},
+        url: process.env.SERVER_URL
+    };
+    const res = await (0,axios__WEBPACK_IMPORTED_MODULE_0__["default"])(axiosConfig);
+    return res.data;
+}
+async function createItem(newItem) {
+    let { category , ...body } = newItem;
+    const axiosConfig = {
+        method: "post",
+        url: `${process.env.SERVER_URL}?category=${newItem.category}`,
+        data: body
+    };
+    const res = await (0,axios__WEBPACK_IMPORTED_MODULE_0__["default"])(axiosConfig);
+    return res.data;
+}
+async function updateItem(updatedItem) {
+    let { category , ...body } = updatedItem;
+    const axiosConfig = {
+        method: "put",
+        url: `${process.env.SERVER_URL}?category=${updatedItem.category}`,
+        data: body
+    };
+    const res = await (0,axios__WEBPACK_IMPORTED_MODULE_0__["default"])(axiosConfig);
+    return res.data;
+}
+async function deleteItem(itemId, category) {
+    const axiosConfig = {
+        method: "delete",
+        url: `${process.env.SERVER_URL}?itemId=${itemId}&category=${category}`
+    };
+    const res = await (0,axios__WEBPACK_IMPORTED_MODULE_0__["default"])(axiosConfig);
+    return res.data;
+}
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
 
 /***/ })
 
@@ -40,7 +104,7 @@ eval("__webpack_require__.a(__webpack_module__, async (__webpack_handle_async_de
 var __webpack_require__ = require("../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = (__webpack_exec__("(api)/./pages/api/items.js"));
+var __webpack_exports__ = (__webpack_exec__(892));
 module.exports = __webpack_exports__;
 
 })();
