@@ -1,7 +1,10 @@
 export async function createNewItem(newItem, dispatch) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_CLIENT_URL}api/items`, {
     method: 'POST',
-    body: JSON.stringify(newItem)
+    body: JSON.stringify(newItem),
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    }
   });
 
   const { returnedCreatedItem } = await res.json();
@@ -16,7 +19,10 @@ export async function createNewItem(newItem, dispatch) {
 export async function updateItem(updatedItem, dispatch) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_CLIENT_URL}api/items`, {
     method: 'PUT',
-    body: JSON.stringify(updatedItem)
+    body: JSON.stringify(updatedItem),
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    }
   });
 
   const { returnedUpdatedItem } = await res.json();
@@ -33,7 +39,10 @@ export async function deleteItem(deleteItem, dispatch) {
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_CLIENT_URL}api/items`, {
     method: 'DELETE',
-    body: JSON.stringify({ itemId, category })
+    body: JSON.stringify({ itemId, category }),
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    }
   });
 
   const { deletedId } = await res.json();
