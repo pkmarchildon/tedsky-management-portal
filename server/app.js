@@ -10,11 +10,8 @@ const app = express();
 /* Middlewares */
 // Security
 app.use(helmet());
-app.use(
-  cors({
-    origin: '*'
-  })
-);
+app.use(cors());
+app.options('*', cors());
 
 // Logging
 app.use(morgan('combined'));
