@@ -37,7 +37,7 @@ export default async function handler(req, res) {
 async function getAllItems() {
   const axiosConfig = {
     method: 'GET',
-    headers: {},
+    headers: { 'Access-Control-Allow-Origin': '*' },
     url: process.env.SERVER_URL
   };
 
@@ -51,7 +51,8 @@ async function createItem(newItem) {
   const axiosConfig = {
     method: 'post',
     url: `${process.env.SERVER_URL}?category=${newItem.category}`,
-    data: body
+    data: body,
+    headers: { 'Access-Control-Allow-Origin': '*' }
   };
 
   const res = await axios(axiosConfig);
@@ -65,7 +66,8 @@ async function updateItem(updatedItem) {
   const axiosConfig = {
     method: 'put',
     url: `${process.env.SERVER_URL}?category=${updatedItem.category}`,
-    data: body
+    data: body,
+    headers: { 'Access-Control-Allow-Origin': '*' }
   };
 
   const res = await axios(axiosConfig);
@@ -76,7 +78,8 @@ async function updateItem(updatedItem) {
 async function deleteItem(itemId, category) {
   const axiosConfig = {
     method: 'delete',
-    url: `${process.env.SERVER_URL}?itemId=${itemId}&category=${category}`
+    url: `${process.env.SERVER_URL}?itemId=${itemId}&category=${category}`,
+    headers: { 'Access-Control-Allow-Origin': '*' }
   };
 
   const res = await axios(axiosConfig);

@@ -19,7 +19,10 @@ export default function Home({ items }) {
 
 Home.getInitialProps = async (ctx) => {
   const res = await fetch(`${process.env.CLIENT_URL}api/items`, {
-    method: 'GET'
+    method: 'GET',
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    }
   });
 
   const { items } = await res.json();
